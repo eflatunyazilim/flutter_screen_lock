@@ -20,10 +20,10 @@ Future showConfirmPasscode({
     PageRouteBuilder(
       opaque: false,
       pageBuilder: (
-        BuildContext context,
-        Animation<double> animation,
-        Animation<double> secodaryAnimation,
-      ) {
+          BuildContext context,
+          Animation<double> animation,
+          Animation<double> secodaryAnimation,
+          ) {
         return LockScreen(
           title: title,
           confirmTitle: confirmTitle,
@@ -36,11 +36,11 @@ Future showConfirmPasscode({
         );
       },
       transitionsBuilder: (
-        BuildContext context,
-        Animation<double> animation,
-        Animation<double> secondaryAnimation,
-        Widget child,
-      ) {
+          BuildContext context,
+          Animation<double> animation,
+          Animation<double> secondaryAnimation,
+          Widget child,
+          ) {
         return SlideTransition(
           position: Tween<Offset>(
             begin: const Offset(0.0, 2.4),
@@ -72,15 +72,18 @@ Future showLockScreen({
   bool canBiometric = false,
   bool showBiometricFirst = false,
   void Function(BuildContext) biometricFunction,
+  String description,
+  Color numberCircleColor,
+  Color numberCircleLineColor,
 }) {
   return Navigator.of(context).push(
     PageRouteBuilder(
       opaque: false,
       pageBuilder: (
-        BuildContext context,
-        Animation<double> animation,
-        Animation<double> secodaryAnimation,
-      ) {
+          BuildContext context,
+          Animation<double> animation,
+          Animation<double> secodaryAnimation,
+          ) {
         return LockScreen(
           correctString: correctString,
           title: title,
@@ -93,14 +96,17 @@ Future showLockScreen({
           canBiometric: canBiometric,
           showBiometricFirst: showBiometricFirst,
           biometricFunction: biometricFunction,
+          description: description,
+          numberCirleColor: numberCircleColor,
+          numberCircleLineColor: numberCircleLineColor,
         );
       },
       transitionsBuilder: (
-        BuildContext context,
-        Animation<double> animation,
-        Animation<double> secondaryAnimation,
-        Widget child,
-      ) {
+          BuildContext context,
+          Animation<double> animation,
+          Animation<double> secondaryAnimation,
+          Widget child,
+          ) {
         return SlideTransition(
           position: Tween<Offset>(
             begin: const Offset(0.0, 2.4),
@@ -134,6 +140,9 @@ class LockScreen extends StatefulWidget {
   final bool canBiometric;
   final bool showBiometricFirst;
   final void Function(BuildContext) biometricFunction;
+  final String description;
+  final Color numberCirleColor;
+  final Color numberCircleLineColor;
 
   LockScreen({
     this.correctString,
@@ -150,6 +159,9 @@ class LockScreen extends StatefulWidget {
     this.canBiometric = false,
     this.showBiometricFirst = false,
     this.biometricFunction,
+    this.description,
+    this.numberCirleColor,
+    this.numberCircleLineColor,
   });
 
   @override
@@ -160,11 +172,11 @@ class _LockScreenState extends State<LockScreen> {
   // receive from circle input button
   final StreamController<String> enteredStream = StreamController<String>();
   final StreamController<void> removedStreamController =
-      StreamController<void>();
+  StreamController<void>();
   final StreamController<int> enteredLengthStream =
-      StreamController<int>.broadcast();
+  StreamController<int>.broadcast();
   final StreamController<bool> validateStreamController =
-      StreamController<bool>();
+  StreamController<bool>();
 
   // control for Android back button
   bool _needClose = false;
@@ -189,7 +201,7 @@ class _LockScreenState extends State<LockScreen> {
     if (widget.showBiometricFirst && widget.biometricFunction != null) {
       Future.delayed(
         Duration(milliseconds: 300),
-        () => widget.biometricFunction(context),
+            () => widget.biometricFunction(context),
       );
     }
   }
@@ -285,6 +297,7 @@ class _LockScreenState extends State<LockScreen> {
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 3.5, sigmaY: 3.5),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 _buildTitle(),
                 DotSecretUI(
@@ -355,13 +368,21 @@ class _LockScreenState extends State<LockScreen> {
   }
 
   Widget _buildNumberTextButton(
-    BuildContext context,
-    String number,
-  ) {
+      BuildContext context,
+      String number,
+      ) {
     final buttonSize = MediaQuery.of(context).size.width * 0.215;
     return Container(
       width: buttonSize,
       height: buttonSize,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(45),
+        border: Border.all(width: 1,color: widget.numberCircleLineColor),
+        color: widget.numberCirleColor,
+        /*boxShadow: [
+          BoxShadow(color: Colors.blueAccent, spreadRadius: 3),
+        ],*/
+      ),
       child: CircleInputButton(
         enteredSink: enteredStream.sink,
         text: number,
@@ -381,9 +402,21 @@ class _LockScreenState extends State<LockScreen> {
   Widget _buildTitle() {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20),
-      child: Text(
-        _isConfirmation ? widget.confirmTitle : widget.title,
-        style: TextStyle(fontSize: 20.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          Center(
+            child: Text(
+              widget.description,textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16.0,),
+            ),
+          ),
+          SizedBox(height: 20,),
+          Text(
+            _isConfirmation ? widget.confirmTitle : widget.title,
+            style: TextStyle(fontSize: 20.0),
+          )
+        ],
       ),
     );
   }

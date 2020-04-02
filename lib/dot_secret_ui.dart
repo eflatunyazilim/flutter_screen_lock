@@ -57,14 +57,14 @@ class _DotSecretUIState extends State<DotSecretUI>
     _animation = _animationController
         .drive(CurveTween(curve: Curves.elasticIn))
         .drive(Tween<Offset>(begin: Offset.zero, end: const Offset(0.025, 0)))
-          ..addListener(() {
-            setState(() {});
-          })
-          ..addStatusListener((status) {
-            if (status == AnimationStatus.completed) {
-              _animationController.reverse();
-            }
-          });
+      ..addListener(() {
+        setState(() {});
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          _animationController.reverse();
+        }
+      });
   }
 
   @override
@@ -82,7 +82,7 @@ class _DotSecretUIState extends State<DotSecretUI>
                 children: List<Widget>.generate(
                   widget.dots,
                   // index less than the input digit is true
-                  (index) => _buildCircle(index < snapshot.data),
+                      (index) => _buildCircle(index < snapshot.data),
                 ),
               );
             } else {
@@ -91,7 +91,7 @@ class _DotSecretUIState extends State<DotSecretUI>
                 children: List<Widget>.generate(
                   widget.dots,
                   // index less than the input digit is true
-                  (index) => _buildCircle(false),
+                      (index) => _buildCircle(false),
                 ),
               );
             }
@@ -108,8 +108,9 @@ class _DotSecretUIState extends State<DotSecretUI>
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color:
-            enabled ? widget.config.enabledColor : widget.config.disabledColor,
+        enabled ? widget.config.enabledColor : widget.config.disabledColor,
         border: Border.all(width: 1, color: widget.config.dotBorderColor),
+        //border: Border.all(width: 1, color: Colors.blueAccent),
       ),
     );
   }
