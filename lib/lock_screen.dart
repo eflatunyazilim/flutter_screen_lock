@@ -15,6 +15,10 @@ Future showConfirmPasscode({
   int digits = 4,
   DotSecretConfig dotSecretConfig = const DotSecretConfig(),
   void Function(BuildContext, String) onCompleted,
+  String description,
+  Color numberCircleColor,
+  Color numberCircleLineColor,
+  Color backgroundColor,
 }) {
   return Navigator.of(context).push(
     PageRouteBuilder(
@@ -25,6 +29,10 @@ Future showConfirmPasscode({
           Animation<double> secodaryAnimation,
           ) {
         return LockScreen(
+          description: '',
+          backgroundColor: backgroundColor,
+          numberCircleColor: numberCircleColor,
+          numberCircleLineColor: numberCircleLineColor,
           title: title,
           confirmTitle: confirmTitle,
           confirmMode: true,
@@ -75,6 +83,7 @@ Future showLockScreen({
   String description,
   Color numberCircleColor,
   Color numberCircleLineColor,
+  Color backgroundColor,
 }) {
   return Navigator.of(context).push(
     PageRouteBuilder(
@@ -97,8 +106,9 @@ Future showLockScreen({
           showBiometricFirst: showBiometricFirst,
           biometricFunction: biometricFunction,
           description: description,
-          numberCirleColor: numberCircleColor,
+          numberCircleColor: numberCircleColor,
           numberCircleLineColor: numberCircleLineColor,
+          backgroundColor: backgroundColor,
         );
       },
       transitionsBuilder: (
@@ -141,8 +151,9 @@ class LockScreen extends StatefulWidget {
   final bool showBiometricFirst;
   final void Function(BuildContext) biometricFunction;
   final String description;
-  final Color numberCirleColor;
+  final Color numberCircleColor;
   final Color numberCircleLineColor;
+  final Color backgroundColor;
 
   LockScreen({
     this.correctString,
@@ -160,8 +171,9 @@ class LockScreen extends StatefulWidget {
     this.showBiometricFirst = false,
     this.biometricFunction,
     this.description,
-    this.numberCirleColor,
+    this.numberCircleColor,
     this.numberCircleLineColor,
+    this.backgroundColor,
   });
 
   @override
@@ -292,12 +304,12 @@ class _LockScreenState extends State<LockScreen> {
         return false;
       },
       child: Scaffold(
-        backgroundColor: Colors.white.withOpacity(0.5),
+        backgroundColor: widget.backgroundColor,
         body: SafeArea(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 3.5, sigmaY: 3.5),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 _buildTitle(),
                 DotSecretUI(
@@ -378,7 +390,7 @@ class _LockScreenState extends State<LockScreen> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(45),
         border: Border.all(width: 1,color: widget.numberCircleLineColor),
-        color: widget.numberCirleColor,
+        color: widget.numberCircleColor,
         /*boxShadow: [
           BoxShadow(color: Colors.blueAccent, spreadRadius: 3),
         ],*/
@@ -407,11 +419,12 @@ class _LockScreenState extends State<LockScreen> {
         children: <Widget>[
           Center(
             child: Text(
-              widget.description,textAlign: TextAlign.center,
+              widget.description,
+              textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16.0,),
             ),
           ),
-          SizedBox(height: 20,),
+          SizedBox(height: 30,),
           Text(
             _isConfirmation ? widget.confirmTitle : widget.title,
             style: TextStyle(fontSize: 20.0),

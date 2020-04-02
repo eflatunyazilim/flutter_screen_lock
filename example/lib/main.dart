@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_driver/driver_extension.dart';
+import 'package:flutter_screen_lock/dot_secret_ui.dart';
 import 'package:flutter_screen_lock/lock_screen.dart';
 import 'package:local_auth/local_auth.dart';
 
@@ -43,6 +44,11 @@ class _MyHomePageState extends State<MyHomePage> {
               RaisedButton(
                 child: Text('Open Lock Screen'),
                 onPressed: () => showLockScreen(
+                  backgroundColor: Colors.redAccent,
+                  numberCircleLineColor: Colors.blueAccent,
+                  numberCircleColor: Colors.green,
+                  description: 'Çocuğunuzun güvenliği için şifre koyun',
+                  dotSecretConfig: DotSecretConfig(enabledColor: Colors.green,dotBorderColor: Colors.blue),
                   context: context,
                   correctString: '1234',
                   onCompleted: (context, result) {
@@ -55,6 +61,11 @@ class _MyHomePageState extends State<MyHomePage> {
               RaisedButton(
                 child: Text('6 Digits'),
                 onPressed: () => showLockScreen(
+                  backgroundColor: Colors.redAccent,
+                  numberCircleLineColor: Colors.blueAccent,
+                  numberCircleColor: Colors.green,
+                  description: "asdfghjklşasdfghjkçsrx",
+                  dotSecretConfig: DotSecretConfig(enabledColor: Colors.green,dotBorderColor: Colors.blue),
                   context: context,
                   digits: 6,
                   correctString: '123456',
@@ -63,6 +74,11 @@ class _MyHomePageState extends State<MyHomePage> {
               RaisedButton(
                 child: Text('Use local_auth'),
                 onPressed: () => showLockScreen(
+                  backgroundColor: Colors.redAccent,
+                  numberCircleLineColor: Colors.blueAccent,
+                  numberCircleColor: Colors.green,
+                  description: "asdfghjklşasdfghjkçsrx",
+                  dotSecretConfig: DotSecretConfig(enabledColor: Colors.green,dotBorderColor: Colors.blue),
                   context: context,
                   correctString: '1234',
                   canBiometric: true,
@@ -81,6 +97,11 @@ class _MyHomePageState extends State<MyHomePage> {
               RaisedButton(
                 child: Text('Open biometric first'),
                 onPressed: () => showLockScreen(
+                  backgroundColor: Colors.redAccent,
+                  numberCircleLineColor: Colors.blueAccent,
+                  numberCircleColor: Colors.green,
+                  description: "asdfghjklşasdfghjkçsrx",
+                  dotSecretConfig: DotSecretConfig(enabledColor: Colors.green,dotBorderColor: Colors.blue),
                   context: context,
                   correctString: '1234',
                   canBiometric: true,
@@ -100,6 +121,11 @@ class _MyHomePageState extends State<MyHomePage> {
               RaisedButton(
                 child: Text('Can\'t cancel'),
                 onPressed: () => showLockScreen(
+                  backgroundColor: Colors.redAccent,
+                  numberCircleLineColor: Colors.blueAccent,
+                  numberCircleColor: Colors.green,
+                  description: "asdfghjklşasdfghjkçsrx",
+                  dotSecretConfig: DotSecretConfig(enabledColor: Colors.green,dotBorderColor: Colors.blue),
                   context: context,
                   correctString: '1234',
                   canCancel: false,
@@ -108,6 +134,11 @@ class _MyHomePageState extends State<MyHomePage> {
               RaisedButton(
                 child: Text('Customize text'),
                 onPressed: () => showLockScreen(
+                  backgroundColor: Colors.redAccent,
+                  numberCircleLineColor: Colors.blueAccent,
+                  numberCircleColor: Colors.green,
+                  description: "asdfghjklşasdfghjkçsrx",
+                  dotSecretConfig: DotSecretConfig(enabledColor: Colors.green,dotBorderColor: Colors.blue),
                   context: context,
                   correctString: '1234',
                   cancelText: 'Close',
@@ -117,6 +148,13 @@ class _MyHomePageState extends State<MyHomePage> {
               RaisedButton(
                 child: Text('Confirm mode.'),
                 onPressed: () => showConfirmPasscode(
+                  backgroundColor: Colors.white,
+                  numberCircleLineColor: Colors.blueAccent,
+                  numberCircleColor: Colors.transparent,
+                  dotSecretConfig: DotSecretConfig(
+                      enabledColor: Colors.blueAccent,
+                      dotBorderColor: Colors.blueAccent,
+                  ),
                   context: context,
                   onCompleted: (context, verifyCode) {
                     print(verifyCode);
