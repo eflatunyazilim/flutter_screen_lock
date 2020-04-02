@@ -1,14 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CircleInputButton extends StatelessWidget {
   final String text;
   final Sink<String> enteredSink;
   final Color dotTextColor;
+  final Color dotFocusedColor;
 
   CircleInputButton({
     @required this.text,
     @required this.enteredSink,
     @required this.dotTextColor,
+    @required this.dotFocusedColor,
   });
 
   @override
@@ -35,6 +38,7 @@ class CircleInputButton extends StatelessWidget {
       ),
       color: Colors.transparent,
       elevation: 0,
+      highlightColor: dotFocusedColor.withOpacity(0.55),
     );
   }
 }

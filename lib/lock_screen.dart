@@ -21,6 +21,7 @@ Future showConfirmPasscode({
   Color backgroundColor,
   Color dotTextColor,
   Color textColor,
+  Color dotFocusedColor,
 }) {
   return Navigator.of(context).push(
     PageRouteBuilder(
@@ -45,6 +46,7 @@ Future showConfirmPasscode({
           cancelText: cancelText,
           deleteText: deleteText,
           textColor: textColor,
+          dotFocusedColor: dotFocusedColor,
         );
       },
       transitionsBuilder: (
@@ -90,6 +92,7 @@ Future showLockScreen({
   Color backgroundColor,
   Color dotTextColor,
   Color textColor,
+  Color dotFocusedColor,
 }) {
   return Navigator.of(context).push(
     PageRouteBuilder(
@@ -117,6 +120,7 @@ Future showLockScreen({
           backgroundColor: backgroundColor,
           dotTextColor: dotTextColor,
           textColor: textColor,
+          dotFocusedColor: dotFocusedColor,
         );
       },
       transitionsBuilder: (
@@ -164,6 +168,7 @@ class LockScreen extends StatefulWidget {
   final Color backgroundColor;
   final Color dotTextColor;
   final Color textColor;
+  final Color dotFocusedColor;
 
   LockScreen({
     this.correctString,
@@ -186,6 +191,7 @@ class LockScreen extends StatefulWidget {
     this.backgroundColor,
     this.dotTextColor,
     this.textColor,
+    this.dotFocusedColor,
   });
 
   @override
@@ -411,6 +417,7 @@ class _LockScreenState extends State<LockScreen> {
         enteredSink: enteredStream.sink,
         text: number,
         dotTextColor: widget.dotTextColor,
+        dotFocusedColor: widget.dotFocusedColor,
       ),
     );
   }

@@ -45,12 +45,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text('Open Lock Screen'),
                 onPressed: () => showLockScreen(
                   backgroundColor: Colors.white,
-                  numberCircleLineColor: Colors.blueAccent,
-                  numberCircleColor: Colors.blue.withOpacity(0.55),
+                  numberCircleLineColor: Colors.blueAccent.shade200,
+                  numberCircleColor: Colors.blue.withOpacity(0.05),
                   description: 'Çocuğunuzun güvenliği için şifre koyun',
-                  dotSecretConfig: DotSecretConfig(enabledColor: Colors.green,dotBorderColor: Colors.blue,),
-                  dotTextColor: Colors.white,
+                  dotSecretConfig: DotSecretConfig(
+                    enabledColor: Colors.green,
+                    dotBorderColor: Colors.blue,
+                  ),
+                  dotTextColor: Colors.black,
                   textColor: Colors.redAccent,
+                  dotFocusedColor: Colors.red,
                   context: context,
                   correctString: '1234',
                   onCompleted: (context, result) {
@@ -99,9 +103,9 @@ class _MyHomePageState extends State<MyHomePage> {
               RaisedButton(
                 child: Text('Open biometric first'),
                 onPressed: () => showLockScreen(
-                  backgroundColor: Colors.redAccent,
-                  numberCircleLineColor: Colors.blueAccent,
-                  numberCircleColor: Colors.green,
+                  backgroundColor: Colors.red.shade200,
+                  numberCircleLineColor: Colors.yellow.shade200,
+                  numberCircleColor: Colors.green.shade200,
                   description: "asdfghjklşasdfghjkçsrx",
                   dotSecretConfig: DotSecretConfig(enabledColor: Colors.green,dotBorderColor: Colors.blue),
                   context: context,
