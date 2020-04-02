@@ -44,9 +44,9 @@ class _MyHomePageState extends State<MyHomePage> {
               RaisedButton(
                 child: Text('Open Lock Screen'),
                 onPressed: () => showLockScreen(
-                  backgroundColor: Colors.redAccent,
+                  backgroundColor: Colors.white,
                   numberCircleLineColor: Colors.blueAccent,
-                  numberCircleColor: Colors.green,
+                  numberCircleColor: Colors.blue.withOpacity(0.55),
                   description: 'Çocuğunuzun güvenliği için şifre koyun',
                   dotSecretConfig: DotSecretConfig(enabledColor: Colors.green,dotBorderColor: Colors.blue),
                   context: context,

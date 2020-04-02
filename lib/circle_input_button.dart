@@ -30,7 +30,7 @@ class CircleInputButton extends StatelessWidget {
           style: BorderStyle.solid,
         ),
       ),
-      color: Colors.grey.shade600.withOpacity(0.4),
+      color: Colors.transparent,
       elevation: 0,
     );
   }
