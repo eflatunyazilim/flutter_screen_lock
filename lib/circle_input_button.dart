@@ -3,16 +3,19 @@ import 'package:flutter/material.dart';
 class CircleInputButton extends StatelessWidget {
   final String text;
   final Sink<String> enteredSink;
+  final Color dotTextColor;
 
   CircleInputButton({
     @required this.text,
     @required this.enteredSink,
+    @required this.dotTextColor,
   });
 
   @override
   Widget build(BuildContext context) {
     final textStyle = TextStyle(
       fontSize: MediaQuery.of(context).size.width * 0.095,
+      color: dotTextColor,
     );
 
     return RaisedButton(

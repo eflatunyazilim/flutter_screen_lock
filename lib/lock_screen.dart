@@ -19,6 +19,7 @@ Future showConfirmPasscode({
   Color numberCircleColor,
   Color numberCircleLineColor,
   Color backgroundColor,
+  Color dotTextColor,
 }) {
   return Navigator.of(context).push(
     PageRouteBuilder(
@@ -33,6 +34,7 @@ Future showConfirmPasscode({
           backgroundColor: backgroundColor,
           numberCircleColor: numberCircleColor,
           numberCircleLineColor: numberCircleLineColor,
+          dotTextColor: dotTextColor,
           title: title,
           confirmTitle: confirmTitle,
           confirmMode: true,
@@ -84,6 +86,7 @@ Future showLockScreen({
   Color numberCircleColor,
   Color numberCircleLineColor,
   Color backgroundColor,
+  Color dotTextColor,
 }) {
   return Navigator.of(context).push(
     PageRouteBuilder(
@@ -109,6 +112,7 @@ Future showLockScreen({
           numberCircleColor: numberCircleColor,
           numberCircleLineColor: numberCircleLineColor,
           backgroundColor: backgroundColor,
+          dotTextColor: dotTextColor,
         );
       },
       transitionsBuilder: (
@@ -154,6 +158,7 @@ class LockScreen extends StatefulWidget {
   final Color numberCircleColor;
   final Color numberCircleLineColor;
   final Color backgroundColor;
+  final Color dotTextColor;
 
   LockScreen({
     this.correctString,
@@ -174,6 +179,7 @@ class LockScreen extends StatefulWidget {
     this.numberCircleColor,
     this.numberCircleLineColor,
     this.backgroundColor,
+    this.dotTextColor,
   });
 
   @override
@@ -398,6 +404,7 @@ class _LockScreenState extends State<LockScreen> {
       child: CircleInputButton(
         enteredSink: enteredStream.sink,
         text: number,
+        dotTextColor: widget.dotTextColor,
       ),
     );
   }

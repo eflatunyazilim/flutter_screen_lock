@@ -48,7 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   numberCircleLineColor: Colors.blueAccent,
                   numberCircleColor: Colors.blue.withOpacity(0.55),
                   description: 'Çocuğunuzun güvenliği için şifre koyun',
-                  dotSecretConfig: DotSecretConfig(enabledColor: Colors.green,dotBorderColor: Colors.blue),
+                  dotSecretConfig: DotSecretConfig(enabledColor: Colors.green,dotBorderColor: Colors.blue,),
+                  dotTextColor: Colors.white,
                   context: context,
                   correctString: '1234',
                   onCompleted: (context, result) {
