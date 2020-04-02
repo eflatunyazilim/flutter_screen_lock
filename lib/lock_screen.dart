@@ -20,6 +20,7 @@ Future showConfirmPasscode({
   Color numberCircleLineColor,
   Color backgroundColor,
   Color dotTextColor,
+  Color textColor,
 }) {
   return Navigator.of(context).push(
     PageRouteBuilder(
@@ -43,6 +44,7 @@ Future showConfirmPasscode({
           onCompleted: onCompleted,
           cancelText: cancelText,
           deleteText: deleteText,
+          textColor: textColor,
         );
       },
       transitionsBuilder: (
@@ -87,6 +89,7 @@ Future showLockScreen({
   Color numberCircleLineColor,
   Color backgroundColor,
   Color dotTextColor,
+  Color textColor,
 }) {
   return Navigator.of(context).push(
     PageRouteBuilder(
@@ -113,6 +116,7 @@ Future showLockScreen({
           numberCircleLineColor: numberCircleLineColor,
           backgroundColor: backgroundColor,
           dotTextColor: dotTextColor,
+          textColor: textColor,
         );
       },
       transitionsBuilder: (
@@ -159,6 +163,7 @@ class LockScreen extends StatefulWidget {
   final Color numberCircleLineColor;
   final Color backgroundColor;
   final Color dotTextColor;
+  final Color textColor;
 
   LockScreen({
     this.correctString,
@@ -180,6 +185,7 @@ class LockScreen extends StatefulWidget {
     this.numberCircleLineColor,
     this.backgroundColor,
     this.dotTextColor,
+    this.textColor,
   });
 
   @override
@@ -428,13 +434,13 @@ class _LockScreenState extends State<LockScreen> {
             child: Text(
               widget.description,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16.0,),
+              style: TextStyle(fontSize: 16.0,color: widget.textColor),
             ),
           ),
           SizedBox(height: 30,),
           Text(
             _isConfirmation ? widget.confirmTitle : widget.title,
-            style: TextStyle(fontSize: 20.0),
+            style: TextStyle(fontSize: 20.0,color: widget.textColor),
           )
         ],
       ),
@@ -485,6 +491,7 @@ class _LockScreenState extends State<LockScreen> {
               buttonText,
               style: TextStyle(
                 fontSize: MediaQuery.of(context).size.width * 0.055,
+                color: widget.textColor
               ),
               softWrap: false,
               textAlign: TextAlign.center,

@@ -50,6 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   description: 'Çocuğunuzun güvenliği için şifre koyun',
                   dotSecretConfig: DotSecretConfig(enabledColor: Colors.green,dotBorderColor: Colors.blue,),
                   dotTextColor: Colors.white,
+                  textColor: Colors.redAccent,
                   context: context,
                   correctString: '1234',
                   onCompleted: (context, result) {
